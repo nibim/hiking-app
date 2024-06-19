@@ -49,8 +49,6 @@ export default function Login() {
     }
     return(
         <div>
-            <Banner color='blue'/>
-
             {isLoggedIn?
                 <div className="userContent">
                     <p>Welcome, {user.email}</p>
@@ -60,22 +58,20 @@ export default function Login() {
                 <div className="loginScreen">
                     {isLogin ? 
                     <div className="login">
-                        <h2 className="signin">Sign in:</h2>
-                        <input value={email} type="email" placeholder="Email" onChange={(ev) => setEmail(ev.target.value)} /> 
-                        <input value={password} type="password" placeholder="Password" onChange={(ev)=> setPassword(ev.target.value)}/>
+                        <h1 className="signin">Sign in</h1>
+                        <input className="inputContent" value={email} type="email" placeholder="Email" onChange={(ev) => setEmail(ev.target.value)} /> 
+                        <input className="inputContent" value={password} type="password" placeholder="Password" onChange={(ev)=> setPassword(ev.target.value)}/>
                         <input className={'inputButton'} type="button" onClick={loginHandler} value={'Log in'} />
-                        <input className={'inputButton'} type="button" onClick={() => { setIsLogin(false) }} value={'Sign Up'} />
+                        <input className={'linkButton'} type="button" onClick={() => { setIsLogin(false) }} value={'Sign Up'} />
                     </div>
                     :
-                    <div className="signUp">
-                        Email:
-                        <input value={email} type="email" placeholder="Enter your Email here" onChange={(ev) => setEmail(ev.target.value)} /> 
-                        Password:
-                        <input value={password} type="password" placeholder="Enter your password here" onChange={(ev)=> setPassword(ev.target.value)}/>
-                        ReEnter password:
-                        <input value={rePassword} type="password" placeholder="ReEnter your password here" onChange={(ev)=> setRePassword(ev.target.value)}/>
+                    <div className="signup">
+                        <h1 className="signin">Sign up</h1>
+                        <input className="inputContent" value={email} type="email" placeholder="Email" onChange={(ev) => setEmail(ev.target.value)} /> 
+                        <input className="inputContent" value={password} type="password" placeholder="Password" onChange={(ev)=> setPassword(ev.target.value)}/>
+                        <input className="inputContent" value={rePassword} type="password" placeholder="Retype password" onChange={(ev)=> setRePassword(ev.target.value)}/>
                         <input className={'inputButton'} type="button" onClick={signupHandler} value={'Sign Up'} />
-                        <input className={'inputButton'} type="button" onClick={() => { setIsLogin(true) }} value={'Log In'} />
+                        <input className={'linkButton'} type="button" onClick={() => { setIsLogin(true) }} value={'Log In'} />
                     </div>
                     }
                 </div>
