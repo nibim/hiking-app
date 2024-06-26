@@ -38,9 +38,12 @@
 }
 
 .navbar {
+ z-index: 1;
+ position: relative;
  width: 100vw;
  display: flex;
  justify-content: space-between;
+ box-shadow: rgba(0, 0, 0, 0.3) 0px 0.25rem 0.25rem;
  height: 40px;
  align-items: center;
  background-color:#CACACA;
@@ -65,7 +68,6 @@
 
 .button-border{
   width: 10vw;
-  
 }
 .button{
   display: flex;
@@ -90,6 +92,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .banner-header {
@@ -109,7 +114,8 @@
 
 .post-image{
   width: 20vw;
-  height: auto;
+  
+  height: 300px;
 }
  .single-post{
   margin: 20px;
@@ -173,4 +179,51 @@ justify-content: center;
 .signin{
   align-self: flex-start;
   color: #202022;
+}
+.backgroundImg{
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.account-page{
+position: relative;
+ display: flex;
+ width: 100vw;
+ height: 100vh;
+}
+.side-nav{
+  display: flex;
+  flex-direction: column;
+  width:7.5%;
+  height: 100%;
+  background-color:#CACACA ;
+}
+.account-content{
+width: 90%;
+}
+.side-nav > div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: 72px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  text-decoration: none;
+  color: #202022;
+  font-weight: 400;
+}
+.side-nav > div:hover{
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.side-nav > div > p{
+  margin: 0px;
+}
+.side-nav > div > img{
+  width: 40px;
+  height: 40px;
 }
