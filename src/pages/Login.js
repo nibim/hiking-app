@@ -1,7 +1,9 @@
-import { useState } from "react";
-import Banner from "../components/Banner";
-import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword,signOut} from 'firebase/auth';
+import { useEffect, useState } from "react";
+import { getAuth , createUserWithEmailAndPassword} from 'firebase/auth';
 import app from "../utils/firebase";
+import { useAuth } from "../utils/useAuth";
+import { getDatabase,update,ref } from "firebase/database";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -10,28 +12,34 @@ export default function Login() {
     const [password ,setPassword] = useState('');
     const [rePassword ,setRePassword] = useState('');
     const[isLogin , setIsLogin] =useState(true)
-    const[isLoggedIn, setIsLoggedIn] = useState(false)
-    const [user, setUser] = useState();
     let auth = getAuth(app); // Get the Auth instance
+    const {user,login, logout, setUser} = useAuth()
+    const navigate = useNavigate()
 
     async function loginHandler() {
-        try {
-            await signInWithEmailAndPassword(auth, email, password);
-            auth = getAuth(app);
-            setUser(auth.currentUser)
-            setIsLoggedIn(true);
-            // User signed in successfully, redirect to protected content, etc.
-        } catch (error) {
-            console.log(error)
-        }
+        await login({email : email, password:password})
         setEmail('')
         setPassword('')
+        navigate('/Account')
+    }
+    function addUser(uid) {
+        const db = getDatabase();
+        const value = {
+            admin:false
+          };
+        update(ref(db,`users`),{
+            [uid] : value
+        } );
+       
     }
     async function signupHandler() {
         if(password === rePassword){
             try {
                 await createUserWithEmailAndPassword(auth, email, password);
+                setUser(auth.currentUser.uid)
+                //console.log(auth.currentUser.uid)
                 setIsLogin(true)
+                addUser(auth.currentUser.uid)
                 // User signed in successfully, redirect to protected content, etc.
             } catch (error) {
                 console.log(error)
@@ -43,18 +51,12 @@ export default function Login() {
         setRePassword('')
     }
 
+    useEffect(()=>{console.log(user)},[user])
+
     async function logoutHandler() {
-       signOut(auth)
-       setIsLoggedIn(false)
+       logout()
     }
     return(
-        <div>
-            {isLoggedIn?
-                <div className="userContent">
-                    <p>Welcome, {user.email}</p>
-                    <input className={'inputButton'} type="button" onClick={() => { logoutHandler() }} value={'Sign Out'} />
-                </div>
-                :
                 <div className="loginScreen">
                     {isLogin ? 
                     <div className="login">
@@ -75,9 +77,5 @@ export default function Login() {
                     </div>
                     }
                 </div>
-            }
-            
-            
-        </div>
     )
 }
