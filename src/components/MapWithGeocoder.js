@@ -6,7 +6,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 const accessToken = "pk.eyJ1IjoibmlibSIsImEiOiJjbHh3NjQ4bHoxZ3NhMmlwZTA5N3ExcnhzIn0.TmnoMN4sx89lNt5BGlelYw";
 
-export default function MapWithGeocoder() {
+export default function MapWithGeocoder(params) {
   const mapContainerRef = useRef();
   const mapInstanceRef = useRef();
   const [inputValue, setInputValue] = useState("");
@@ -31,7 +31,8 @@ export default function MapWithGeocoder() {
         onChange={(d) => {
           setInputValue(d);
         }}
-        onRetrieve={(ev) => {console.log(ev.geometry.coordinates)}}
+        
+        onRetrieve={(ev) => {params.setLocation(ev.geometry.coordinates)}}
         marker 
       />
       <div id="map-container" ref={mapContainerRef} style={{ height: 300 , width: "100%"}} />
