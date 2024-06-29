@@ -2,7 +2,6 @@ import Banner from "../components/Banner"
 import '../App.css';
 import instaImg from "../instagram.png"
 import emailImg from "../email.png"
-import ButtonMailto from "../components/ButtonMailto" 
 import { Link } from "react-router-dom";
 
 
