@@ -7,25 +7,24 @@ import { Link } from "react-router-dom";
 
 
 export default function Contact() {
-    function instagramHandler(params) {
-        window.location.href="https://www.instagram.com/hiking_sweden/"
-    }
-    function emailHandler() {
-        
-    }
+    
     return(
         <div>
             <Banner  />
             <div>
                 <h1>Contact Us</h1>
                 <div className="contacts">
-                    <div onClick={instagramHandler}>
-                        <img src={instaImg} alt='Instagram Icon'/>
-                        <h5>Instagram</h5>
+                    <div>
+                        <a href="https://www.instagram.com/hiking_sweden/"> 
+                            <img src={instaImg} alt='Instagram Icon' className="icon"/>
+                            <h5>Instagram</h5>
+                        </a>
                     </div>
-                    <div onClick={() => {window.location = 'mailto:beignima8@gmail.com'; console.log("Nima")}}>
-                        <img src={emailImg} alt='Email Icon'/>
-                        <h5>Email</h5>
+                    <div>
+                        <a href="mailto:beignima8@gmail.com"> 
+                            <img src={emailImg} alt='Email Icon' className="icon"/>
+                            <h5>Email</h5>
+                        </a>
                     </div>
                 </div>
             </div>
