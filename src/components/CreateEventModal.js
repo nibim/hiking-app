@@ -56,7 +56,7 @@ export default function CreateEventModal(params) {
                         <input className="inputContent" value={bio} type="text" placeholder="Bio" onChange={(ev) => setBio(ev.target.value)} /> 
                         <input className="inputContent" value={topic} type="text" placeholder="Topic" onChange={(ev)=> setTopic(ev.target.value)}/>
                         <input className="inputContent" value={date} type="date" placeholder="Date" onChange={(ev)=>setDate(ev.target.value)}/>
-                        <MapWithGeocoder setLocation= {setLocation}/>
+                        <MapWithGeocoder setLocation={setLocation}/>
                         <input className={'inputButton'} type="button" onClick={onAddEvent} value={'Add Event'} />
                     </div>
                 </div>

@@ -18,6 +18,14 @@ export default function Map(params) {
   }, []);
 
   useEffect(() => {
+    if(params.focusLocation){
+    mapInstanceRef.current.setCenter(params.focusLocation)
+    mapInstanceRef.current.setZoom(14)
+  }
+  },[params.focusLocation])
+
+
+  useEffect(() => {
     params.events.forEach(event => {
         new mapboxgl.Marker().setLngLat(event.location).addTo(mapInstanceRef.current);
     });

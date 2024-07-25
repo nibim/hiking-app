@@ -13,8 +13,7 @@ export default function Home() {
     const dbRef = databaseRef(getDatabase(app));
     const [update, setUpdate] = useState(false);
     const [events, setEvents] = useState([]);
-
-   
+    const [focusLocation, setFocusLocation] = useState();
     
     
     useEffect(()=>{get(child(dbRef, `posts`)).then((snapshot) => {
@@ -41,10 +40,11 @@ export default function Home() {
 
     
     
+    
     return(
         <div className="home">
             <Banner />
-            <Map events={events}></Map>
+            <Map events={events} focusLocation={focusLocation}></Map>
             <div className='posts'>{events.length !==0 ? events.map((event) => (
                 <Event
                 key={event.key}
@@ -52,6 +52,7 @@ export default function Home() {
                 bio={event.bio}
                 date = {event.date}
                 location = {event.location}
+                setLocation ={setFocusLocation}
                 /> 
               )) : <div/>}
             </div>

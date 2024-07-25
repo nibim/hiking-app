@@ -1,6 +1,4 @@
-
 import '../App.css';
-
 
 export default function Event(props){
 
@@ -9,8 +7,9 @@ export default function Event(props){
             <h1>{props.topic}</h1>
             <p>{props.bio}</p>
             <p>{props.date}</p>
-            <p>{props.location}</p>
-            
+            <button className='inputButton' onClick={()=>{
+                console.log(props.location)
+                props.setLocation(props.location)}}>locate</button>   
         </div>
     )
 }
