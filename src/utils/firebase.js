@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 
 
     const firebaseConfig = {
-        apiKey: "AIzaSyBCm8F5g9PSC9MiGVunJuwf8HBh41usqhM",
+        apiKey: "process.env.REACT_APP_API_KEY",
         authDomain: "hiking-app-a8e26.firebaseapp.com",
         databaseURL: "https://hiking-app-a8e26-default-rtdb.europe-west1.firebasedatabase.app",
         projectId: "hiking-app-a8e26",
