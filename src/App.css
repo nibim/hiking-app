@@ -111,7 +111,11 @@
   flex-wrap: wrap;
   width: 80vw; 
 }
-
+.events{
+  display: flex;
+  overflow-x: auto;
+  height: 100%;
+}
 .post-image{
   width: 20vw;
   
@@ -119,6 +123,16 @@
 }
  .single-post{
   margin: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  height: 300px;
+  min-Width: 300px;
+}
+.single-event{
+  margin: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  height: 300px;
+  min-Width: 250px;
+  max-width: 250px;
 }
 .login ,.signup{
   display: flex;
@@ -142,7 +156,7 @@
   margin-bottom: 48px;
   text-align: center;
   font-size: 16px;
-  font-weight: 900;
+  font-weight: 900; 
 }
 .linkButton{
   background: none;
@@ -246,3 +260,18 @@ width: 90%;
 text-decoration: none;
 color: black;
 }
+
+.header-event {
+  text-align: left;
+  margin-left: 16px;
+}
+.header-post {
+  text-align: left;
+  margin-left: 16px;
+}
+.event-button {
+  width: 80%;
+  margin: 8px;
+}
+
+
