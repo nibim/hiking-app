@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef } from "react";
 import { getDatabase, ref as dataRef, update, child, get  } from "firebase/database";
 import { getStorage, ref as storeRef, uploadBytes } from "firebase/storage";
 
@@ -17,6 +17,7 @@ export default function CreatePostModal(params) {
     const db = getDatabase()
     const dbRef = dataRef(db)
     const storageRef = storeRef(storage, 'posts/' + index + ".jpeg");
+    const hiddenFileInput = useRef(null);
 
     useEffect(()=>{
       setReload(false)
@@ -32,6 +33,11 @@ export default function CreatePostModal(params) {
     });},[reload])
   const onUpload = (event) => {
     setSelectedFile(event.target.files[0]);
+    alert("file uploaded successfully")
+  };
+
+  const handleClick = event => {
+    hiddenFileInput.current.click();    // ADDED
   };
 
 
@@ -49,7 +55,10 @@ export default function CreatePostModal(params) {
         uploadBytes(storageRef, selectedFile, {contentType: "image/jpeg"}).then((snapshot) => {
           setReload(true)
           });
-       
+        alert("Post created succesfully")
+       setBio("")
+       setTopic("")
+       setSelectedFile(null)
     }
     return(
         <div>
@@ -59,7 +68,13 @@ export default function CreatePostModal(params) {
                         <h1 className="signin">Add post</h1>
                         <input className="inputContent" value={bio} type="text" placeholder="Bio" onChange={(ev) => setBio(ev.target.value)} /> 
                         <input className="inputContent" value={topic} type="text" placeholder="Topic" onChange={(ev)=> setTopic(ev.target.value)}/>
-                        <input className={'inputButton'} type="file" onChange={onUpload} accept="image/*"/>
+                        <p>{selectedFile?.name}</p>
+                        <>
+                          <button className="inputButton file-upload" onClick={handleClick}>
+                            {selectedFile === null ? "Upload a file" : "Change file"}
+                          </button>
+                          <input style={{display:'none'}} type="file" onChange={onUpload} accept="image/*" ref={hiddenFileInput} />
+                        </>
                         <input className={'inputButton'} type="button" onClick={onAddPost} value={'Add post'} />
                     </div>
                     
