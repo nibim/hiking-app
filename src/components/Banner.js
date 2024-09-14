@@ -19,7 +19,7 @@ export default function Banner(params) {
         <div className="banner-body" style={{backgroundImage:`url(${img})`}}>
 
             <h1 className="banner-header" >
-                From Nature to the Nature!
+            Find Your Path in Stockholm’s Great Outdoors
             </h1>
         </div>
     )
