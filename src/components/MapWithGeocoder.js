@@ -4,7 +4,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 
-const accessToken = "pk.eyJ1IjoibmlibSIsImEiOiJjbHh3NjQ4bHoxZ3NhMmlwZTA5N3ExcnhzIn0.TmnoMN4sx89lNt5BGlelYw";
+const accessToken = process.env.REACT_APP_MAPBOX_KEY;
 
 export default function MapWithGeocoder(params) {
   const mapContainerRef = useRef();

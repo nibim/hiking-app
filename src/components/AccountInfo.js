@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/useAuth"
-import { useEffect } from "react";
 import { getAuth , onAuthStateChanged} from "firebase/auth";
 import app from "../utils/firebase";
 
