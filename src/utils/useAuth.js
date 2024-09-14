@@ -6,13 +6,9 @@ export const useAuth = () => {
   const { user, addUser, removeUser, setUser } = useUser();
   let auth = getAuth()
   const login = async (user) => {
-    try {
-        await signInWithEmailAndPassword(auth, user.email, user.password);
-        auth = getAuth();
-    } catch (error) {
-        console.log(error)
-    }
-    addUser(auth.currentUser);
+      await signInWithEmailAndPassword(auth, user.email, user.password);
+      auth = getAuth();
+      addUser(auth.currentUser);
   };
 
   const logout = () => {

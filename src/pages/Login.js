@@ -17,18 +17,23 @@ export default function Login() {
     const navigate = useNavigate()
 
     async function loginHandler() {
+        try{
         await login({email : email, password:password})
         setEmail('')
         setPassword('')
+        }catch(err){
+            alert("Problem Signing In please try again")
+            return;
+        }
         navigate('/Account')
     }
-    function addUser(uid, email) {
+    async function addUser(uid, email) {
         const db = getDatabase();
         const value = {
             admin:false,
             email: email
           };
-        update(ref(db,`users`),{
+        await update(ref(db,`users`),{
             [uid] : value
         } );
        
@@ -37,14 +42,14 @@ export default function Login() {
         if(password === rePassword){
             try {
                 await createUserWithEmailAndPassword(auth, email, password);
-                setUser(auth.currentUser.uid)
-                //console.log(auth.currentUser.uid)
-                setIsLogin(true)
-                addUser(auth.currentUser.uid, auth.currentUser.email)
-                // User signed in successfully, redirect to protected content, etc.
             } catch (error) {
-                console.log(error)
+                alert(error.message)
+                return;
             }
+            setUser(auth.currentUser.uid)
+            setIsLogin(true)
+            await addUser(auth.currentUser.uid, auth.currentUser.email)
+            alert("Account created successfully")
         }
         else {alert("passwords do not match");}
         setEmail('')
