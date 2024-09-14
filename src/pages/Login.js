@@ -22,10 +22,11 @@ export default function Login() {
         setPassword('')
         navigate('/Account')
     }
-    function addUser(uid) {
+    function addUser(uid, email) {
         const db = getDatabase();
         const value = {
-            admin:false
+            admin:false,
+            email: email
           };
         update(ref(db,`users`),{
             [uid] : value
@@ -39,7 +40,7 @@ export default function Login() {
                 setUser(auth.currentUser.uid)
                 //console.log(auth.currentUser.uid)
                 setIsLogin(true)
-                addUser(auth.currentUser.uid)
+                addUser(auth.currentUser.uid, auth.currentUser.email)
                 // User signed in successfully, redirect to protected content, etc.
             } catch (error) {
                 console.log(error)
@@ -51,7 +52,7 @@ export default function Login() {
         setRePassword('')
     }
 
-    useEffect(()=>{console.log(user)},[user])
+  
 
     async function logoutHandler() {
        logout()
