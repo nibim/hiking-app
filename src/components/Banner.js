@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import '../App.css';
 import { getStorage,getDownloadURL,ref } from "firebase/storage";
-import { useLocation } from 'react-router-dom';
 
 export default function Banner(params) {
-    const location = useLocation();
     const [img, setImg] = useState('');
     const storage = getStorage();
-    useEffect( ()=>{getDownloadURL(ref(storage, "banner/" + location.pathname+ ".jpg"))
+    useEffect( ()=>{getDownloadURL(ref(storage, "banner/" + params.name + ".jpg"))
     .then((url) => {
     setImg(url)
     })

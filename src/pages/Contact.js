@@ -9,7 +9,7 @@ export default function Contact() {
     
     return(
         <div>
-            <Banner  />
+            <Banner name={"Contact"}/>
             <div>
                 <h1>Contact Us</h1>
                 <div className="contacts">

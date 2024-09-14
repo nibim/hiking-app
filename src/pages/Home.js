@@ -43,7 +43,7 @@ export default function Home() {
     
     return(
         <div className="home">
-            <Banner />
+            <Banner name={"Home"}/>
             <Map events={events} focusLocation={focusLocation}></Map>
             <h1 className="header-event">Events</h1>
             <div className='events'>{events.length !==0 ? events.map((event) => (
