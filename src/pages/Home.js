@@ -45,17 +45,21 @@ export default function Home() {
         <div className="home">
             <Banner />
             <Map events={events} focusLocation={focusLocation}></Map>
-            <div className='posts'>{events.length !==0 ? events.map((event) => (
+            <h1 className="header-event">Events</h1>
+            <div className='events'>{events.length !==0 ? events.map((event) => (
                 <Event
                 key={event.key}
+                index={event.key}
                 topic={event.topic}
                 bio={event.bio}
                 date = {event.date}
                 location = {event.location}
                 setLocation ={setFocusLocation}
+                atendees = {event.atendees}
                 /> 
               )) : <div/>}
             </div>
+            <h1 className="header-post">Posts</h1>
             <div className='posts'>{posts.length !==0 ? posts.map((post) => (
                 <Post
                 key={post.key}
