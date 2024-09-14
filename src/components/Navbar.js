@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
-import { useAuth } from "../utils/useAuth";
+import { getAuth } from "firebase/auth";
 
 export default function Navbar() {
-    const{user}=useAuth()
+    const auth = getAuth();
     return(
         <>
             <nav className="navbar">
@@ -13,7 +13,7 @@ export default function Navbar() {
                     <Link className="button-border button" to="/Contact">Contact</Link>
                 </div>
                 <div className="rightnav">
-                <Link className="button"to={user===null?'/Login':'/Account'}>{user===null?'Login':'Account'}</Link>
+                <Link className="button"to={auth.currentUser===null?'/Login':'/Account'}>{auth.currentUser===null?'Login':'Account'}</Link>
                 </div>
             </nav>
             <Outlet />

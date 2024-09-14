@@ -1,6 +1,5 @@
-import { useNavigate } from "react-router-dom";
+
 import CreatePostModal from "../components/CreatePostModal"
-import { useAuth } from "../utils/useAuth"
 import { AccountInfo } from "../components/AccountInfo";
 import { useState , useEffect} from "react";
 import '../App.css';
@@ -9,20 +8,20 @@ import InfoImg from '../information.png'
 import eventImg from '../event.png'
 import CreateEventModal from "../components/CreateEventModal";
 import { getDatabase, ref as databaseRef, child, get } from "firebase/database";
+import { getAuth } from "firebase/auth";
+
+
 
 
 export default function Account(){
     const [selectedButton, setSelectedButton] = useState(0);
-    const navig = useNavigate();
-    const{user, logout}=useAuth();
-    function logoutHandler(){
-        logout();
-        navig('/Login')
-    }
-    const [comp,setComp] = useState(<AccountInfo user={user} logoutHandler={logoutHandler}/>)
+    const auth = getAuth()
+    const [comp,setComp] = useState(<AccountInfo/>)
     const [users,setUsers] = useState();
     const [isAdmin, setIsAdmin] = useState(false);
     const dbRef = databaseRef(getDatabase());
+    
+    
 
     useEffect(()=>{get(child(dbRef, `users`)).then((snapshot) => {
         if (snapshot.exists()) {
@@ -36,13 +35,14 @@ export default function Account(){
 
     useEffect(()=>{
         if(users){
-       setIsAdmin(users[user.uid].admin)
+       setIsAdmin(users[auth.currentUser.uid].admin)
     }
     },[users])
 
+
     function infoHandler(){
         setSelectedButton(0);
-        setComp(<AccountInfo user={user} logoutHandler={logoutHandler}/>)
+        setComp(<AccountInfo/>)
     }
     function postHandler(){
         setSelectedButton(1)
