@@ -115,7 +115,7 @@
 .single-event{
   margin: 20px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  height: 300px;
+  height: auto;
   min-Width: 250px;
   max-width: 250px;
 }
