@@ -70,7 +70,7 @@ export default function Event(props){
 
     return(
         <div className="single-event">
-            <h1>{props.topic}</h1>
+            <h3>{props.topic}</h3>
             <p>{props.bio}</p>
             <p>{props.date}</p>
             {disableAttend ? <button className='inputButton event-button' onClick={handleUnAttend}>Unattend</button> : <button className='inputButton event-button' onClick={handleAttend}>Attend</button>}  

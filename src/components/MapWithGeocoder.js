@@ -14,7 +14,7 @@ export default function MapWithGeocoder(params) {
     mapboxgl.accessToken = accessToken;
     mapInstanceRef.current = new mapboxgl.Map({
       container: mapContainerRef.current, // container ID
-      center: [-74.5, 40], // starting position [lng, lat]
+      center: [-74.5, 40], // starting position [lng, lat] it is initialized with stockholm
       zoom: 9, // starting zoom
     });
     console.log();
