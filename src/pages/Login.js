@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import { getAuth , createUserWithEmailAndPassword} from 'firebase/auth';
+import {  useState } from "react";
+import { getAuth , createUserWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth';
 import app from "../utils/firebase";
 import { useAuth } from "../utils/useAuth";
-import { getDatabase,update,ref } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 
 
@@ -13,7 +12,7 @@ export default function Login() {
     const [rePassword ,setRePassword] = useState('');
     const[isLogin , setIsLogin] =useState(true)
     let auth = getAuth(app); // Get the Auth instance
-    const {user,login, logout, setUser} = useAuth()
+    const {login, setUser} = useAuth()
     const navigate = useNavigate()
 
     async function loginHandler() {
@@ -25,19 +24,15 @@ export default function Login() {
             alert("Problem Signing In please try again")
             return;
         }
-        navigate('/Account')
     }
-    async function addUser(uid, email) {
-        const db = getDatabase();
-        const value = {
-            admin:false,
-            email: email
-          };
-        await update(ref(db,`users`),{
-            [uid] : value
-        } );
-       
-    }
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setUser(user)
+          navigate('/Account')
+        }
+      })
+    
     async function signupHandler() {
         if(password === rePassword){
             try {
@@ -46,9 +41,8 @@ export default function Login() {
                 alert(error.message)
                 return;
             }
-            setUser(auth.currentUser.uid)
+            setUser(auth.currentUser)
             setIsLogin(true)
-            await addUser(auth.currentUser.uid, auth.currentUser.email)
             alert("Account created successfully")
         }
         else {alert("passwords do not match");}
@@ -57,11 +51,6 @@ export default function Login() {
         setRePassword('')
     }
 
-  
-
-    async function logoutHandler() {
-       logout()
-    }
     return(
                 <div className="loginScreen">
                     {isLogin ? 
