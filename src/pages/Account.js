@@ -17,15 +17,15 @@ export default function Account(){
     const [selectedButton, setSelectedButton] = useState(0);
     const auth = getAuth()
     const [comp,setComp] = useState(<AccountInfo/>)
-    const [users,setUsers] = useState();
+    const [admins,setAdmins] = useState([]);
     const [isAdmin, setIsAdmin] = useState(false);
     const dbRef = databaseRef(getDatabase());
     
     
 
-    useEffect(()=>{get(child(dbRef, `users`)).then((snapshot) => {
+    useEffect(()=>{get(child(dbRef, `admins`)).then((snapshot) => {
         if (snapshot.exists()) {
-          setUsers(snapshot.val());
+          setAdmins(snapshot.val());
         } else {
           console.log("No data available");
         }
@@ -34,10 +34,12 @@ export default function Account(){
       });},[])
 
     useEffect(()=>{
-        if(users){
-       setIsAdmin(users[auth.currentUser.uid].admin)
+        if(admins.includes(auth.currentUser.email)){
+       setIsAdmin(true)
+    }else{
+        setIsAdmin(false)
     }
-    },[users])
+    },[admins,auth.currentUser])
 
 
     function infoHandler(){
