@@ -104,6 +104,7 @@
 
 .home{
   width: 100vw;
+  background-color: #878787;
 }
 
 
@@ -118,6 +119,8 @@
   height: auto;
   min-Width: 250px;
   max-width: 250px;
+  background-color: white ;
+  padding: 8px;
 }
 .post-image{
   height: 300px;
@@ -135,6 +138,7 @@
   margin: 10px;
   margin-bottom: 15px;
   padding: 8px;
+  background-color: white;
 }
 
 .login ,.signup{
@@ -300,5 +304,3 @@ color: black;
   background-color: #CACACA;
   height: 100vh;
 }
-
-
