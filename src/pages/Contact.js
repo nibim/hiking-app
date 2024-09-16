@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function Contact() {
     
     return(
-        <div>
+        <div className="contactUs">
             <Banner name={"Contact"}/>
             <div>
                 <h1>Contact Us</h1>
