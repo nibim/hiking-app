@@ -1,6 +1,7 @@
 import Banner from "../components/Banner";
 import Post from "../components/Post";
 import Event from "../components/Event";
+import Footer from "../components/Footer";
 import '../App.css';
 import { getDatabase, ref as databaseRef, child, get } from "firebase/database";
 import { useEffect, useState } from "react";
@@ -69,6 +70,7 @@ export default function Home() {
                 /> 
               )) : <div/>}
             </div>
+            <Footer/>
         </div> 
     )
 }
